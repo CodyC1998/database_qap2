@@ -27,3 +27,33 @@ CREATE TABLE order_items(
 );
 
 -- insert data
+INSERT INTO products(product_name, price, stock_quantity) VALUES
+('Apple iPhone 16', '1129.99', '3'),
+('Samsung Galaxy S25', '1198.99', '1'),
+('OnePlus 13', '1399.99', '5'),
+('Google Pixel 8a', '679.99', '8'),
+('Samsung Galaxy Z Fold6', '2474.99', '2');
+
+INSERT INTO customers(first_name, last_name, email) VALUES
+('Alice', 'Johnson', 'alice.johnson@example.com'),
+('Bob', 'Smith', 'bob.smith@example.com'),
+('Charlie', 'Brown', 'charlie.brown@example.com'),
+('Diana', 'Williams', 'diana.williams@example.com');
+
+INSERT INTO orders (cust_id, order_date) VALUES
+(1, '2025-02-01'),
+(2, '2025-02-05'),
+(3, '2025-02-07'),
+(4, '2025-02-09'),
+(2, '2025-02-09');
+
+INSERT INTO order_items(order_id, product_id, quantity) VALUES
+(15, 1, 2),
+(16, 2, 2),
+(17, 5, 2),
+(18, 3, 2),
+(19, 4, 3);
+
+-- SQL queries
+
+-- retrieve name and stock quntity of all products
