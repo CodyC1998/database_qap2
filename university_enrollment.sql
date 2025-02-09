@@ -1,3 +1,4 @@
+-- createing tables
 CREATE TABLE students (
 	student_id SERIAL PRIMARY KEY,
 	first_name TEXT,
@@ -27,6 +28,7 @@ CREATE TABLE enrollments (
 	PRIMARY KEY (student_id, course_id)
 );
 
+-- inserting data 
 INSERT INTO students(first_name, last_name, email, school_enrollment_date) VALUES
 ('Emily', 'Smith', 'emilysmith@example.com', '2023-09-15'),
 ('Michael', 'Johnson', 'michaeljohnson@example.com', '2024-01-10'),
@@ -51,3 +53,31 @@ INSERT INTO enrollments(student_id, course_id, enrollment_date) VALUES
 (3, 3, '2022-08-10'),  
 (4, 1, '2023-09-05'), 
 (5, 2, '2025-03-01') 
+
+-- sql queries
+
+-- retrieve full name of students enrolled in 'Intro to Programming'
+SELECT students.first_name || ' ' || students.last_name AS full_name
+FROM students
+JOIN enrollments ON students.student_id = enrollments.student_id
+JOIN courses ON enrollments.course_id = courses.course_id
+WHERE courses.course_name = 'Intro to Programming';
+
+--retrieve list of all courses and professor who teaches each
+SELECT courses.course_name, professors.first_name || ' ' || professors.last_name AS professor_full_name
+FROM courses
+JOIN professors ON courses.prof_id = professors.prof_id;
+
+-- retrieve list of all courses with students enrolled in them
+SELECT DISTINCT courses.course_name
+FROM courses
+JOIN enrollments ON courses.course_id = enrollments.course_id;
+
+-- update email
+UPDATE students
+SET email = 'newemail@example.com'
+WHERE first_name = 'Emily' AND last_name = 'Smith';
+
+-- delete a student from a course 
+DELETE FROM enrollments
+WHERE student_id = 2 AND course_id = 2;
