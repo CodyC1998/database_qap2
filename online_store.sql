@@ -29,7 +29,7 @@ CREATE TABLE order_items(
 -- insert data
 INSERT INTO products(product_name, price, stock_quantity) VALUES
 ('Apple iPhone 16', '1129.99', '3'),
-('Samsung Galaxy S25', '1198.99', '1'),
+('Samsung Galaxy S25', '1198.99', '2'),
 ('OnePlus 13', '1399.99', '5'),
 ('Google Pixel 8a', '679.99', '8'),
 ('Samsung Galaxy Z Fold6', '2474.99', '2');
@@ -57,3 +57,19 @@ INSERT INTO order_items(order_id, product_id, quantity) VALUES
 -- SQL queries
 
 -- retrieve name and stock quntity of all products
+SELECT product_name, stock_quantity
+FROM products;
+
+-- retrieve product names and quantity for one of the placed orders
+SELECT products.product_name, order_items.quantity
+FROM order_items
+JOIN products ON order_items.product_id = products.product_id
+WHERE order_items.order_id = 1;
+
+-- retrieve all orders placed by a specific customer
+SELECT orders.order_id, products.product_name, order_items.quantity
+FROM orders
+JOIN order_items ON orders.order_id = order_items.order_id
+JOIN products ON order_items.product_id = products.product_id
+WHERE orders.cust_id = 2;
+
