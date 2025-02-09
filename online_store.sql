@@ -73,3 +73,22 @@ JOIN order_items ON orders.order_id = order_items.order_id
 JOIN products ON order_items.product_id = products.product_id
 WHERE orders.cust_id = 2;
 
+-- update data (I update the products table to remove items based on the quantity ordered from order 1)
+UPDATE products
+SET stock_quantity = stock_quantity - (
+    SELECT quantity
+    FROM order_items
+    WHERE order_id = 1 AND product_id = products.product_id
+)
+WHERE product_id IN (
+    SELECT product_id
+    FROM order_items
+    WHERE order_id = 1
+);
+
+-- delete data
+DELETE FROM order_items
+WHERE order_id = 2;
+
+DELETE FROM orders
+WHERE order_id = 2;
