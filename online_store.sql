@@ -48,11 +48,11 @@ INSERT INTO orders (cust_id, order_date) VALUES
 (2, '2025-02-09');
 
 INSERT INTO order_items(order_id, product_id, quantity) VALUES
-(15, 1, 2),
-(16, 2, 2),
-(17, 5, 2),
-(18, 3, 2),
-(19, 4, 3);
+(1, 1, 2),
+(2, 2, 2),
+(3, 5, 2),
+(4, 3, 2),
+(5, 4, 3);
 
 -- SQL queries
 
